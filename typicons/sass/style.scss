@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+@import "../../lib/function.scss";
+
+//define variable
+$namespace: icon !default;
+$font-size: 24px;
+$color: #444;
+$bgColor: #eee;
+
+//icon list (corresponds to icon font characters)
+//Note associative arrays will be easier in Sass version3.3:
+//https://github.com/nex3/sass/issues/642
+$icons: (
+	"battery-low" "\e000",
+	"battery" "\e001",
+	"battery-full" "\e002",
+	"battery-charging" "\e003",
+	"plus" "\e004",
+	"cross" "\e005",
+	"arrow-right" "\e006",
+	"arrow-left" "\e007",
+	"pencil" "\e008",
+	"search" "\e009",
+	"grid" "\e00a",
+	"list" "\e00b",
+	"star" "\e00c",
+	"heart" "\e00d",
+	"back" "\e00e",
+	"forward" "\e00f",
+	"map-marker" "\e010",
+	"phone" "\e011",
+	"home" "\e012",
+	"camera" "\e013",
+	"arrow-left-2" "\e014",
+	"arrow-right-2" "\e015",
+	"arrow-up" "\e016",
+	"arrow-down" "\e017",
+	"refresh" "\e018",
+	"refresh-2" "\e019",
+	"escape" "\e01a",
+	"repeat" "\e01b",
+	"loop" "\e01c",
+	"shuffle" "\e01d",
+	"feed" "\e01e",
+	"trashcan" "\e01f",
+	"expand" "\e020",
+	"info" "\e021",
+	"question" "\e022",
+	"cancel" "\e023",
+	"delete" "\e024",
+	"cog" "\e025",
+	"wrench" "\e026",
+	"infinity" "\e027",
+	"electricity" "\e028",
+	"chat" "\e029",
+	"clock" "\e02a",
+	"compass" "\e02b",
+	"key" "\e02c",
+	"bars" "\e02d",
+	"chart" "\e02e",
+	"globe" "\e02f",
+	"location" "\e030",
+	"calendar" "\e031",
+	"sun" "\e032",
+	"directions" "\e033",
+	"thumbs-up" "\e034",
+	"stats" "\e035",
+	"eye" "\e036",
+	"thumbs-down" "\e037",
+	"pin" "\e038",
+	"contrast" "\e039",
+	"mobile" "\e03a",
+	"mute" "\e03b",
+	"tag" "\e03c",
+	"zoom-out" "\e03d",
+	"zoom-in" "\e03e",
+	"views" "\e03f",
+	"volume" "\e040",
+	"download" "\e041",
+	"puzzle" "\e042",
+	"globe-2" "\e043",
+	"warning" "\e044",
+	"export" "\e045",
+	"user" "\e046",
+	"beta" "\e047",
+	"pencil-2" "\e048",
+	"music" "\e049",
+	"scissors" "\e04a",
+	"minus" "\e04b",
+	"unlocked" "\e04c",
+	"users" "\e04d",
+	"microphone" "\e04e",
+	"locked" "\e04f",
+	"equals" "\e050",
+	"bookmark" "\e051",
+	"anchor" "\e052",
+	"list-2" "\e053",
+	"eject" "\e054",
+	"mail" "\e055",
+	"comment" "\e056",
+	"move" "\e057",
+	"flag" "\e058",
+	"checkmark" "\e059"
+);
+
+
+body {
+	font-family: sans-serif;
+	color: $color;
+	line-height: 1.5;
+	font-size: 1em;
+}
+section {
+	display: block;
+	width: 80%;
+	@include horizontal-center;
+}
+.box1 {
+	font-size: $font-size;
+	width: 15em;
+	padding: .25em .5em;
+	margin: .5em 1em .5em 0;
+	background: $bgColor;
+	@include inline-block;
+}
+@include font-face("Icons","../fonts/typicons");
+
+
+span[class^=#{$namespace}]{
+	@include icon{
+		margin-right: 10px;
+	}
+}
+
+//Automagically set up a class for each icon
+@each $icon in $icons {
+	$name: nth($icon, 1);
+	.#{$namespace}-#{$name}{
+		@include icon("before",false,$name);
+	}
+}
+
+.#{$namespace}-battery-low {
+	@include icon("before",false,"battery-low") {
+		color: green;
+	//	margin-right: 10px;
+	}
+}
